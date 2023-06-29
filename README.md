@@ -16,11 +16,11 @@
 
 	sudo docker compose -f docker-compose-docs.yaml run --rm docs
 
-
-
+![example-docker-compose-run](https://github.com/alexeycoder/java-core-docker-as-maketool/assets/109767480/314d3fa1-793e-46c2-ae7d-7ae957e4f926)
 
 *Результат работы контейнера:*
 
+См. сформированную документацию в:
 * [docs/](docs)
 * [docs/index.html](docs/index.html)
 
