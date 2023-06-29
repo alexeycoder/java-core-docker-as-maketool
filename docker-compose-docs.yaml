@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+
+  app:
+    image: bellsoft/liberica-openjdk-alpine:20.0.1-10
+    volumes:
+      - type: bind
+        source: ./src
+        target: /app/src
+      - type: volume
+        source: bin
+        target: /app/bin
+        volume:
+          nocopy: true
+    command: javac -sourcepath /app/src -d /app/bin /app/src/ru/gb/jcore/sample/Main.java
+
+  docs:
+    image: bellsoft/liberica-openjdk-alpine:20.0.1-10
+    depends_on:
+      app:
+        condition: service_completed_successfully
+    volumes:
+      - type: bind
+        source: ./src
+        target: /app/src
+      - type: bind
+        source: ./docs
+        target: /app/docs
+    command: javadoc -sourcepath /app/src -classpath /app/bin -d /app/docs -subpackages ru
+
+volumes:
+  bin:
